@@ -5,9 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
+    private int quantity = 0;
+    private int pricePerCoffee = 5;
+    private float basePrice = quantity * pricePerCoffee;
+    private String msg = "Name :Rajan";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,40 +19,47 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * called when Order button is clicked
-     */
-    void submitOrder(View view) {
-        int noOfCofee = 2;
-        display(noOfCofee);
-        displayPrice(noOfCofee * 4);
-    }
-
-    /**
      * display the price
      *
      * @param number
      */
-    private void display(int number) {
+    private void displayQuantity(int number) {
         TextView quantityTV = findViewById(R.id.quantity_text_view);
-        quantityTV.setText(number);
+        quantityTV.setText(number + "");
     }
-
 
     /**
-     * displays the price to the screen
+     * decrease quantity by on clicking - button
      *
-     * @param number total quantity
+     * @param view
      */
-    private void displayPrice(int number) {
-        TextView priceTV = findViewById(R.id.price_text_view);
-        priceTV.setText(NumberFormat.getCurrencyInstance().format(number));
+    public void decrease(View view) {
+        quantity--;
+        basePrice = quantity * pricePerCoffee;
+        displayQuantity(quantity);
+
     }
-    public void decrease(View view){
-        int quantity = 1;
-        display(quantity);
+
+    /**
+     * increase quantity by 1 on clicking + button
+     *
+     * @param view
+     */
+    public void increase(View view) {
+        quantity++;
+        basePrice = quantity * pricePerCoffee;
+        displayQuantity(quantity);
     }
-    public void increase(View view){
-        int quantity = 3;
-        display(quantity);
+
+    /**
+     * called when Order button is clicked
+     */
+    public void submitOrder(View view) {
+        msg += "\nquantity: "+ quantity;
+        msg += "\nprice: $" +basePrice;
+        msg += "\nThank You";
+        TextView priceTV = (TextView) findViewById(R.id.price_text_view);
+        priceTV.setText(msg);
     }
+
 }
