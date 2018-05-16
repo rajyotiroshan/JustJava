@@ -7,7 +7,13 @@
     android:orientation="vertical"
     android:layout_margin="10dp"
     tools:context=".MainActivity">
-
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="@string/your_name"
+        android:layout_marginBottom="16dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

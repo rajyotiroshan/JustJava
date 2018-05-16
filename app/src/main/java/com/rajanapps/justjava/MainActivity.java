@@ -3,20 +3,22 @@ package com.rajanapps.justjava;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
     private int quantity = 0;
     private int pricePerCoffee = 5;
-    private float basePrice = quantity * pricePerCoffee;
-    private String msg = "Name :Rajan";
+    private float basePrice =0;
+    private String msg ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
+}
 
     /**
      * display the price
@@ -35,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void decrease(View view) {
         quantity--;
-        basePrice = quantity * pricePerCoffee;
         displayQuantity(quantity);
 
     }
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void increase(View view) {
         quantity++;
-        basePrice = quantity * pricePerCoffee;
         displayQuantity(quantity);
     }
 
@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
      * called when Order button is clicked
      */
     public void submitOrder(View view) {
+        basePrice = quantity * pricePerCoffee;
+        EditText nameET = (EditText)findViewById(R.id.name);
+        msg = String.valueOf(nameET.getText());
         msg += "\nquantity: "+ quantity;
         msg += "\nprice: $" +basePrice;
         msg += "\nThank You";
