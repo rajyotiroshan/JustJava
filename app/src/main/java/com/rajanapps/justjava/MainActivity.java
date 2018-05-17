@@ -47,7 +47,13 @@ public class MainActivity extends AppCompatActivity {
         }
         quantity--;
         displayQuantity(quantity);
+        displayPrice(calculatePrice());
 
+    }
+
+    private void displayPrice(int i) {
+        TextView priceDisplay = findViewById(R.id.price_text_view);
+        priceDisplay.setText(String.valueOf(i));
     }
 
     /**
@@ -62,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         }
         quantity++;
         displayQuantity(quantity);
+        displayPrice(calculatePrice());
     }
 
     /**
