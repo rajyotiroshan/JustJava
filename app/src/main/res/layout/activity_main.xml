@@ -15,11 +15,10 @@
         android:hint="@string/your_name"
         android:layout_marginBottom="16dp"/>
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/headerStyle"
         android:layout_marginBottom="16dp"
         android:text="@string/toppings"
-        android:textSize="18sp" />
+       />
 
     <CheckBox
         android:id="@+id/whipped_creamCB"
@@ -37,13 +36,11 @@
         android:text="@string/chocolate" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/headerStyle"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="16dp"
         android:text="@string/quantity"
-        android:textAllCaps="true"
-        android:textSize="18sp" />
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -77,12 +74,10 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/headerStyle"
         android:layout_marginTop="16dp"
         android:text="@string/price"
-        android:textAllCaps="true"
-        android:textSize="18sp" />
+         />
 
     <TextView
         android:id="@+id/price_text_view"
