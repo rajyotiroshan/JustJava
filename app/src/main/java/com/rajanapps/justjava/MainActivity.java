@@ -60,6 +60,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     *
+     * @return  whippedcream selection
+     */
+    private  boolean hasWhippedCream(){
+        CheckBox whippedCream = findViewById(R.id.whipped_creamCB);
+        return whippedCream.isChecked();
+
+    }
+    /**
+     *
+     */
+    private boolean hasChocolate(){
+        CheckBox chocolate = findViewById(R.id.chocolateCB);
+       return chocolate.isChecked();
+    }
+
+    /**
      * create msg for order summary
      *
      * @return orser summary.
@@ -69,8 +86,15 @@ public class MainActivity extends AppCompatActivity {
         EditText nameET = findViewById(R.id.name);
         orderDetails = "Name:: " + String.valueOf(nameET.getText());
         orderDetails += "\n Quantity:: " + quantity;
+        if(hasWhippedCream()){
+            orderDetails += "\n added Whipped Cream";
+        }
+        if(hasChocolate()){
+            orderDetails += "\n added Chocolate";
+        }
+
         orderDetails += "\n Total Price:: " + calculatePrice();
-        return orderDetails;
+        return orderDetails +"\n Thank You!";
     }
 
     /**
@@ -87,8 +111,16 @@ public class MainActivity extends AppCompatActivity {
      */
 
     private int calculatePrice() {
-        int basePrice = pricePerCoffee * quantity;
-        return basePrice;
+        int basePrice = pricePerCoffee;
+        int totalPrice;
+        if(hasChocolate()){
+            basePrice += 2;
+        }
+        if(hasWhippedCream()){
+            basePrice += 1;
+        }
+        totalPrice = basePrice * quantity;
+        return totalPrice;
     }
 
 }
