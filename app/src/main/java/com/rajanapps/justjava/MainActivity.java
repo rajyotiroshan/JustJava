@@ -1,5 +1,7 @@
 package com.rajanapps.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +14,14 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     private int quantity = 0;
     private int pricePerCoffee = 5;
+    EditText nameET;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        nameET = findViewById(R.id.name);
     }
 
     /**
@@ -82,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
      * @return orser summary.
      */
     private String createOrdedrSummary() {
+        //EditText nameET = findViewById(R.id.name);
         String orderDetails = "";
-        EditText nameET = findViewById(R.id.name);
         orderDetails = "Name:: " + String.valueOf(nameET.getText());
         orderDetails += "\n Quantity:: " + quantity;
         if(hasWhippedCream()){
@@ -101,9 +106,16 @@ public class MainActivity extends AppCompatActivity {
      * called when Order button is clicked
      */
     public void submitOrder(View view) {
+        //EditText nameET = findViewById(R.id.name);
         String orderSummary = createOrdedrSummary();
-        TextView priceTV = findViewById(R.id.price_text_view);
-        priceTV.setText(orderSummary);
+        //send an email intent.
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:"));
+        intent.putExtra(Intent.EXTRA_SUBJECT,"order summary for "+ String.valueOf(nameET.getText()));
+        intent.putExtra(Intent.EXTRA_TEXT,orderSummary);
+        if(intent.resolveActivity(getPackageManager()) != null){
+            startActivity(intent);
+        }
     }
 
     /**
